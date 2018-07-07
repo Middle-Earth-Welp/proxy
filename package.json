@@ -11,13 +11,18 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "body-parser": "^1.18.3",
-    "cors": "^2.8.4",
     "express": "^4.16.3",
     "react": "^16.4.1",
-    "react-dom": "^16.4.1"
+    "react-dom": "^16.4.1",
+    "styled-components": "^3.3.3"
   },
   "devDependencies": {
-    "nodemon": "^1.17.5"
+    "babel-core": "^6.26.3",
+    "babel-loader": "^7.1.5",
+    "babel-preset-env": "^1.7.0",
+    "babel-preset-react": "^6.24.1",
+    "nodemon": "^1.17.5",
+    "webpack": "^4.15.1",
+    "webpack-node-externals": "^1.7.2"
   }
 }
