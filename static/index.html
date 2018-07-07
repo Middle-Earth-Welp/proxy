@@ -9,9 +9,33 @@
   <title>Welp</title>
 </head>
 <body>
-  <div id="header"></div>
+  <div id="Header"></div>
   <div id="sidebar"></div>
   <div id="questions"></div>
   <div id="review-component"></div>
+  <script src="/lib/react.development.js"></script>
+  <script src="/lib/react-dom.development.js"></script>
+  <script src=""></script>
+  <script src=""></script>
+  <script src=""></script>
+  <script src=""></script>
+  <script>
+    ReactDOM.render(
+      React.createElement(Header),
+      document.getElementById('Header')
+    );
+    ReactDOM.render(
+      React.createElement(Sidebar),
+      document.getElementById('sidebar')
+    );
+    ReactDOM.render(
+      React.createElement(Questions),
+      document.getElementById('questions')
+    );
+    ReactDOM.render(
+      React.createElement(Review-Component),
+      document.getElementById('review-component')
+    );
+  </script>
 </body>
 </html>
