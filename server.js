@@ -1,8 +1,7 @@
-import express from 'express';
-import React from 'react';
-import { renderToString } from 'react-dom/server';
-import App from './client/App';
-import Html from './client/Html';
+const express = require('express');
+const React = require('react');
+const { renderToString } = require('react-dom/server');
+const Html = require('./client/Html');
 
 const port = 3000;
 const server = express();
@@ -13,7 +12,6 @@ server.get('/', (req, res) => {
    * to be inserted into our Html template function.
    */
   const body = renderToString(<App />);
-  const title = 'Server side Rendering with Styled Components';
 
   res.send(
     Html({
