@@ -1,25 +1,40 @@
 const express = require('express');
-const React = require('react');
-const { renderToString } = require('react-dom/server');
-const Html = require('./client/Html');
+const morgan = require('morgan');
+const path = require('path');
 
+const app = express();
 const port = 3000;
-const server = express();
 
-server.get('/', (req, res) => {
-  /**
-   * renderToString() will take our React app and turn it into a string
-   * to be inserted into our Html template function.
-   */
-  const body = renderToString(<App />);
+app.use(morgan('dev'));
+app.use(express.static(path.join(__dirname, 'public')));
 
-  res.send(
-    Html({
-      body
-    })
-  );
+const clientBundles = './public/services';
+const serverBundles = './templates/services';
+const serviceConfig = require('./service-config.json');
+const services = require('./loader.js')(clientBundles, serverBundles, serviceConfig);
+
+const React = require('react');
+const ReactDom = require('react-dom/server');
+const Layout = require('./templates/layout');
+const App = require('./templates/app');
+const Scripts = require('./templates/scripts');
+
+const renderComponents = (components, props = {}) => {
+  return Object.keys(components).map(item => {
+    let component = React.createElement(components[item], props);
+    return ReactDom.renderToString(component);
+  });
+};
+
+app.get('/', (req, res) => {
+  let components = renderComponents(services, {itemid: req.params.id});
+  res.end(Layout(
+    'Proxy',
+    App(...components),
+    Scripts(Object.keys(services))
+  ));
 });
 
-server.listen(port, () => {
-  console.log(`Serving at http://localhost:${port}`);
+app.listen(port, () => {
+  console.log(`server running at: http://localhost:${port}`);
 });
