@@ -6,7 +6,7 @@ module.exports = (title, body, scripts) => `
       <link rel="stylesheet" href="/style.css">
       <title>${title}</title>
     </head>
-    <body>
+    <body style="margin: 0;">
     ${body}
     </body>
     ${scripts}
