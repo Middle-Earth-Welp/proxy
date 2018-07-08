@@ -1,19 +1,11 @@
 config:
-  target: 'http://localhost:3000'
+  target: 'http://localhost:8000'
   phases:
     - duration: 60
-      arrivalRate: 150
+      arrivalRate: 1
 scenarios:
   - flow:
     - loop:
       - post:
-          url: '/api/fetchRestaurant'
-          json: {
-                  "name": "stressTest",
-                  "address": "testAddress",
-                  "phone_number": "testNumber",
-                  "url": "testUrl",
-                  "google_map": "testMap",
-                  "categories": "testCategory"
-                }
-      count: 5
+          url: ''
+      count: 1
