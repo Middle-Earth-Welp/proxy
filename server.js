@@ -36,7 +36,16 @@ app.get('/', (req, res) => {
   ));
 });
 
-app.post('/', (req, res) => {
+app.get('/api', (req, res) => {
+  axios.get('http://localhost:3000/api/fetchRestaurant/:id')
+  .then((data) => {
+    res.status(200).send(data);
+  }).catch(err => {
+    res.status(400).send(err);
+  })
+});
+
+app.post('/api', (req, res) => {
   axios.post('http://localhost:3000/api/fetchRestaurant', req.body)
   .then(() => {
     res.status(201).send();

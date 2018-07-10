@@ -1,11 +1,11 @@
 config:
-  target: 'http://localhost:8000'
+  target: 'http://localhost:8000/api'
   phases:
     - duration: 60
-      arrivalRate: 1
+      arrivalRate: 50
 scenarios:
   - flow:
     - loop:
       - get:
           url: '/'
-      count: 1
+      count: 5
