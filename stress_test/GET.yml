@@ -1,11 +1,11 @@
 config:
-  target: 'http://localhost:8000/api'
+  target: 'http://localhost:8000'
   phases:
     - duration: 60
-      arrivalRate: 50
+      arrivalRate: 75
 scenarios:
   - flow:
     - loop:
       - get:
-          url: '/'
+          url: '/api/{{$randomNumber(9000000, 10000000)}}'
       count: 5

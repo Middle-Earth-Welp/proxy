@@ -1,13 +1,13 @@
 config:
-  target: 'http://localhost:8000/api'
+  target: 'http://localhost:8000'
   phases:
     - duration: 60
-      arrivalRate: 1
+      arrivalRate: 100
 scenarios:
   - flow:
     - loop:
       - post:
-          url: '/'
+          url: '/api'
           json: {
                   "name": "stressTest",
                   "address": "testAddress",
@@ -16,4 +16,4 @@ scenarios:
                   "google_map": "testMap",
                   "categories": "testCategory"
                 }
-      count: 1
+      count: 5

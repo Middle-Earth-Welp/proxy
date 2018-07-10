@@ -37,6 +37,18 @@ app.get('/:id', (req, res) => {
   ));
 });
 
+// For stress testing purposes only
+app.get('/api/:id', (req, res) => {
+  console.log(req.params.id);
+  axios.get(`http://localhost:3000/api/fetchRestaurant/${req.params.id}`)
+  .then(({ data }) => {
+    res.status(200).send(data);
+  }).catch(err => {
+    res.status(400).send(err);
+  })
+});
+
+// For stress testing purposes only
 app.post('/api', (req, res) => {
   axios.post('http://localhost:3000/api/fetchRestaurant', req.body)
   .then(() => {
