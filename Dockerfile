@@ -6,6 +6,6 @@ COPY package-lock.json .
 RUN npm install
 COPY . .
 
-EXPOSE 3000
+EXPOSE 80
 
-CMD [ "node", "./mongo/server/index.js" ]
+CMD [ "npm", "start" ]
