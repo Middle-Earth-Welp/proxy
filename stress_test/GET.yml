@@ -7,5 +7,5 @@ scenarios:
   - flow:
     - loop:
       - get:
-          url: ''
+          url: '/'
       count: 1

@@ -7,5 +7,13 @@ scenarios:
   - flow:
     - loop:
       - post:
-          url: ''
+          url: '/'
+          json: {
+                  "name": "stressTest",
+                  "address": "testAddress",
+                  "phone_number": "testNumber",
+                  "url": "testUrl",
+                  "google_map": "testMap",
+                  "categories": "testCategory"
+                }
       count: 1
