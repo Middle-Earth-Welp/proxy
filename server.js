@@ -20,29 +20,21 @@ const Layout = require('./templates/layout');
 const App = require('./templates/app');
 const Scripts = require('./templates/scripts');
 
-const renderComponents = (components, props = {}) => {
+const renderComponents = (components, props) => {
   return Object.keys(components).map(item => {
     let component = React.createElement(components[item], props);
     return ReactDom.renderToString(component);
   });
 };
 
-app.get('/', (req, res) => {
-  let components = renderComponents(services, {itemid: req.params.id});
-  res.end(Layout(
+app.get('/:id', (req, res) => {
+  let props = {id: req.params.id};
+  let components = renderComponents(services);
+  res.send(Layout(
     'Proxy',
     App(...components),
-    Scripts(Object.keys(services))
+    Scripts(Object.keys(services), props)
   ));
-});
-
-app.get('/api', (req, res) => {
-  axios.get('http://localhost:3000/api/fetchRestaurant/:id')
-  .then((data) => {
-    res.status(200).send(data);
-  }).catch(err => {
-    res.status(400).send(err);
-  })
 });
 
 app.post('/api', (req, res) => {

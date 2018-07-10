@@ -1,3 +1,4 @@
 { 
-  "Header": "http://localhost:3000/app"
+  "Header": "http://localhost:3000/app",
+  "sidebar": "52.53.174.134"
 }
