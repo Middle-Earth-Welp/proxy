@@ -1,6 +1,7 @@
 const express = require('express');
 const morgan = require('morgan');
 const path = require('path');
+const axios = require('axios');
 
 const app = express();
 const port = 8000;
@@ -33,6 +34,15 @@ app.get('/', (req, res) => {
     App(...components),
     Scripts(Object.keys(services))
   ));
+});
+
+app.post('/', (req, res) => {
+  axios.post('http://localhost:3000/api/fetchRestaurant', req.body)
+  .then(() => {
+    res.status(201).send();
+  }).catch(err => {
+    res.status(400).send(err);
+  })
 });
 
 app.listen(port, () => {
