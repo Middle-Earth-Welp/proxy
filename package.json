@@ -1,12 +1,10 @@
 {
   "name": "proxy",
   "version": "1.0.0",
-  "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon -i ./public/services -i ./templates/services ./server.js"
+    "start": "nodemon -w ./public/services -w ./templates/services ./server.js"
   },
-  "author": "",
   "license": "ISC",
   "dependencies": {
     "axios": "^0.18.0",
