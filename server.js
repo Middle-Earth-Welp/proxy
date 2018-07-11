@@ -28,7 +28,8 @@ const renderComponents = (components, props) => {
 };
 
 app.get('/:id', (req, res) => {
-  let props = {id: req.params.id};
+  let _id = req.params.id || 11;
+  let props = {id: _id};
   let components = renderComponents(services);
   res.send(Layout(
     'Proxy',
@@ -39,8 +40,7 @@ app.get('/:id', (req, res) => {
 
 // For stress testing purposes only
 app.get('/api/:id', (req, res) => {
-  console.log(req.params.id);
-  axios.get(`http://18.144.48.235:3000/api/fetchRestaurant/${req.params.id}`)
+  axios.get(`http://18.144.48.235/api/fetchRestaurant/${req.params.id}`)
   .then(({ data }) => {
     res.status(200).send(data);
   }).catch(err => {
@@ -50,7 +50,7 @@ app.get('/api/:id', (req, res) => {
 
 // For stress testing purposes only
 app.post('/api', (req, res) => {
-  axios.post('http://18.144.48.235:3000/api/fetchRestaurant', req.body)
+  axios.post('http://18.144.48.235/api/fetchRestaurant', req.body)
   .then(() => {
     res.status(201).send();
   }).catch(err => {
