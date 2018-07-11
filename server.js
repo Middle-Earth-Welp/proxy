@@ -40,7 +40,7 @@ app.get('/:id', (req, res) => {
 
 // For stress testing purposes only
 app.get('/api/:id', (req, res) => {
-  axios.get(`http://18.144.48.235/api/fetchRestaurant/${req.params.id}`)
+  axios.get(`http://18.144.48.235:80/api/fetchRestaurant/${req.params.id}`)
   .then(({ data }) => {
     res.status(200).send(data);
   }).catch(err => {
@@ -50,7 +50,7 @@ app.get('/api/:id', (req, res) => {
 
 // For stress testing purposes only
 app.post('/api', (req, res) => {
-  axios.post('http://18.144.48.235/api/fetchRestaurant', req.body)
+  axios.post('http://18.144.48.235:80/api/fetchRestaurant', req.body)
   .then(() => {
     res.status(201).send();
   }).catch(err => {
