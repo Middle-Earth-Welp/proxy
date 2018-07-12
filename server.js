@@ -4,7 +4,7 @@ const path = require('path');
 const axios = require('axios');
 
 const app = express();
-const port = 8000;
+const port = process.env.PORT || 8000;
 
 app.use(morgan('dev'));
 app.use(express.static(path.join(__dirname, 'public')));
@@ -28,14 +28,12 @@ const renderComponents = (components, props = {}) => {
 };
 
 app.get('/:id', (req, res) => {
-  // let _id = req.params.id || 11;
-  // let props = {id: _id};
-  let components = renderComponents(services, {id: req.params.id});
-  res.send(Layout(
+  let props = {id: req.params.id};
+  let components = renderComponents(services, props);
+  res.end(Layout(
     'Proxy',
     App(...components),
-    Scripts(Object.keys(services))
-    // Scripts(Object.keys(services), props)
+    Scripts(Object.keys(services), props)
   ));
 });
 
