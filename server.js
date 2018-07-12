@@ -60,7 +60,3 @@ app.post('/api', (req, res) => {
 app.listen(port, () => {
   console.log(`server running at ${port}`);
 });
-
-  // "sidebar": "52.53.174.134",
-  // "app": "54.146.31.92"
-  
