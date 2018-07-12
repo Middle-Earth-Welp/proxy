@@ -6,7 +6,7 @@ const exists = Promise.promisify(fs.stat);
 const loadBundle = function(cache, item, filename) {
     setTimeout(() => {
     console.log('loading:', filename);
-    cache[item] = require(filename).default;    
+    cache[item] = require(filename).default;
   }, 0);
 };
 
@@ -37,8 +37,9 @@ const fetchBundles = (path, services, suffix = '', require = false) => {
 };
 
 module.exports = (clientPath, serverPath, services) => {
-  fetchBundles(clientPath, services);
-  fetchBundles(serverPath, services, '-server', true);
-
-  return services;
+  setTimeout(() => {
+    fetchBundles(clientPath, services);
+    fetchBundles(serverPath, services, '-server', true);
+    return services;
+  }, 0)
 };

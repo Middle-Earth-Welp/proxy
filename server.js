@@ -20,7 +20,7 @@ const Layout = require('./templates/layout');
 const App = require('./templates/app');
 const Scripts = require('./templates/scripts');
 
-const renderComponents = (components, props) => {
+const renderComponents = (components, props = {}) => {
   return Object.keys(components).map(item => {
     let component = React.createElement(components[item], props);
     return ReactDom.renderToString(component);
@@ -28,13 +28,14 @@ const renderComponents = (components, props) => {
 };
 
 app.get('/:id', (req, res) => {
-  let _id = req.params.id || 11;
-  let props = {id: _id};
-  let components = renderComponents(services);
+  // let _id = req.params.id || 11;
+  // let props = {id: _id};
+  let components = renderComponents(services, {id: req.params.id});
   res.send(Layout(
     'Proxy',
     App(...components),
-    Scripts(Object.keys(services), props)
+    Scripts(Object.keys(services))
+    // Scripts(Object.keys(services), props)
   ));
 });
 
