@@ -3,7 +3,7 @@ const axios = require('axios');
 
 router.route('/fetchRestaurant/:id')
   .get((req, res) => {
-    axios.get(`http://localhost:3000/api/fetchRestaurant/${req.params.id}`)
+    axios.get(`http://54.215.152.242:3000/api/fetchRestaurant/${req.params.id}`)
     .then(({data})=> {
       res.status(200).send(data);
     }).catch(err => {
@@ -13,7 +13,7 @@ router.route('/fetchRestaurant/:id')
 
 router.route('/fetchRestaurant')
   .post((req, res) => {
-    axios.post('http://localhost:3000/api/fetchRestaurant', req.body)
+    axios.post('http://54.215.152.242:3000/api/fetchRestaurant', req.body)
     .then(() => {
       res.status(200).send();
     }).catch(err => {
