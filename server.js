@@ -2,13 +2,14 @@ require('newrelic');
 const express = require('express');
 const morgan = require('morgan');
 const path = require('path');
-const axios = require('axios');
+const { router } = require('./router');
 
 const app = express();
 const port = process.env.PORT || 8000;
 
 app.use(morgan('dev'));
 app.use(express.static(path.join(__dirname, 'public')));
+// app.use('/api', router);
 
 const clientBundles = './public/services';
 const serverBundles = './templates/services';
@@ -36,26 +37,6 @@ app.get('/:id', (req, res) => {
     App(...components),
     Scripts(Object.keys(services), props)
   ));
-});
-
-// For stress testing purposes only
-app.get('/api/:id', (req, res) => {
-  axios.get(`http://18.144.48.235:80/api/fetchRestaurant/${req.params.id}`)
-  .then(({ data }) => {
-    res.status(200).send(data);
-  }).catch(err => {
-    res.status(400).send(err);
-  })
-});
-
-// For stress testing purposes only
-app.post('/api', (req, res) => {
-  axios.post('http://18.144.48.235:80/api/fetchRestaurant', req.body)
-  .then(() => {
-    res.status(201).send();
-  }).catch(err => {
-    res.status(400).send(err);
-  })
 });
 
 app.listen(port, () => {
