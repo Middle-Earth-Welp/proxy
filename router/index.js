@@ -12,7 +12,14 @@ router.route('/fetchRestaurant/:id')
   });
 
 router.route('/fetchRestaurant')
-  .post()
+  .post((req, res) => {
+    axios.post('http://localhost:3000/api/fetchRestaurant', req.body)
+    .then(() => {
+      res.status(200).send();
+    }).catch(err => {
+      res.status(400).send(err);
+    })
+  })
 
 module.exports = {
   router: router

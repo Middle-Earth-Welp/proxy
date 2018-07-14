@@ -2,10 +2,10 @@ config:
   target: 'http://localhost:8000'
   phases:
     - duration: 60
-      arrivalRate: 75
+      arrivalRate: 80
 scenarios:
   - flow:
     - loop:
       - get:
-          url: '/api/{{$randomNumber(9000000, 10000000)}}'
+          url: '/api/fetchRestaurant/{{$randomNumber(9000000,10000000)}}'
       count: 5
