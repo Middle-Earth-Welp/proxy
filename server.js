@@ -9,7 +9,7 @@ const port = process.env.PORT || 8000;
 
 app.use(morgan('dev'));
 app.use(express.static(path.join(__dirname, 'public')));
-// app.use('/api', router);
+app.use('/api', router);
 
 const clientBundles = './public/services';
 const serverBundles = './templates/services';
@@ -35,7 +35,7 @@ app.get('/:id', (req, res) => {
   res.end(Layout(
     'Proxy',
     App(...components),
-    Scripts(Object.keys(services), props)
+    Scripts(Object.keys(services))
   ));
 });
 
