@@ -4,3 +4,4 @@ public/services/*
 templates/services/*
 newrelic*
 public/lib/*
+.env
